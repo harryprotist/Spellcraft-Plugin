@@ -1,0 +1,11 @@
+name: Spellcraft
+main: io.github.harryprotist.Spellcraft
+version: 0.01
+commands:
+ spellCraftRunning:
+  description: is Spellcraft running?
+ mana:
+  description: manage your mana!
+  aliases: m
+ setmana:
+  description: set mana
