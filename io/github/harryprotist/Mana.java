@@ -80,7 +80,7 @@ public final class Mana implements Listener {
 			if (lore != null && lore.size() == 3 && lore.get(0).equals("SPELLCRAFT") ) {
 
 				Integer m = new Integer(lore.get(1));
-				Spell sp = Spell.parseString(lore.get(2));
+				Spell sp = new Spell(Spell.parseString(lore.get(2)), Plugin);
 
 				m = new Integer(sp.Excecute(m.intValue(), p) );
 
@@ -194,7 +194,7 @@ public final class Mana implements Listener {
 
 		if (isRune(b) ) {
 
-			Spell sp = Rune.parseRune(p, b);
+			Spell sp = new Spell(Rune.parseRune(p, b), Plugin);
 			Integer m = Spell.getValue(b.getType().getId()) * 10;	
 
 			p.sendMessage("Performing ritual");		

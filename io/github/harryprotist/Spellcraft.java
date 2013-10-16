@@ -99,7 +99,7 @@ public final class Spellcraft extends JavaPlugin {
 				}
 
 			// perform a ritual
-			} else if (args.length > 0 && args[0].length() > 0 && (args[0].charAt(0) == 'i' || args[0].charAt(0) == 'I')) {
+			} else if (args.length > 0 && args[0].length() > 0 && (args[0].charAt(0) == 'p' || args[0].charAt(0) == 'P')) {
 
 				ManaEvents.perform(p);
 			

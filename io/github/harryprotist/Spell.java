@@ -19,6 +19,8 @@ import java.io.*;
 // this class is the real meat of the plugin
 public class Spell {
 
+	private Spellcraft Plugin;
+
 	private static Map<Integer, Integer> Functions = new HashMap<Integer, Integer>();
 	private static Map<Integer, Integer> Values = new HashMap<Integer, Integer>();
 	public static boolean Load() {
@@ -110,6 +112,14 @@ public class Spell {
 	private ArrayList<Integer> Script;
 	public Spell(ArrayList<Integer> script) {
 		Script = script;
+	}
+	public Spell(ArrayList<Integer> script, Spellcraft p) {
+		Script = script;
+		Plugin = p;
+	}
+	public Spell(Spell sp, Spellcraft p) {
+		Script = sp.Script;
+		Plugin = p;
 	}
 
 	public int Excecute(int manaSource, Player caster) {
@@ -334,6 +344,21 @@ public class Spell {
 					if (manaSource - manaUsed <= 0) return 0;
 
 					if (argv.get(0).intValue() == 0) break SPELL;
+				break;
+				case 17:
+				// transfer mana to caster
+					if (argc != 0) break SPELL;
+
+					manaUsed += 5;
+					if (manaSource - manaUsed <= 0) return 0;
+
+					if (Plugin != null) {
+		
+						Integer pmana = (Integer)Plugin.getMeta(caster, "mana");
+						if (pmana == null) pmana = new Integer(0);
+						Plugin.setMeta(caster, "mana", new Integer(pmana.intValue() + 1));
+					}
+
 				break;
 				default:
 					break SPELL;
