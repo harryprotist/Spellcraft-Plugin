@@ -23,11 +23,14 @@ public class Rune {
 
 		double orbC = 0.0; // clockwise
 		double orbO = 2.0; // outward
-
+ 
 		World w	= center.getWorld();
-
+ 
 		ArrayList<Integer> spell = new ArrayList<Integer>();	
 		ArrayList<String> usedOrb = new ArrayList<String>();; // orbitals that have occured before to be imp.
+		// TODO: switch to some sort of map because this has some problems
+
+
 	// this goes in a 4 part cycle, +x, -z, -x and +z	
 	READ:
 	while (true) {

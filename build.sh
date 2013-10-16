@@ -10,6 +10,7 @@ jar -cf Spellcraft.jar io/github/harryprotist/*.class plugin.yml || exit
 
 echo Installing plugin...
 cp Spellcraft.jar ../BukkitTest/plugins
+cp spell.txt ../BukkitTest/
 
 echo Cleaning up...
 rm io/github/harryprotist/*.class
