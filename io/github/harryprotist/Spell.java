@@ -88,11 +88,6 @@ public class Spell {
 		String ret = "";
 		for (Integer i : Script) {
 
-			if (i.intValue() < 0) {
-				ret += (new Integer(i.intValue() - 4)).toString() + ", ";
-				continue;
-			}
-
 			ret += i.toString() + ", ";	
 		}
 
@@ -116,7 +111,7 @@ public class Spell {
 
 		Location loc = caster.getLocation();
 
-		caster.sendMessage(dumpScript());
+		//caster.sendMessage(dumpScript());
 
 		SPELL:
 		for (int i = 0; i < Script.size();) {
@@ -130,7 +125,7 @@ public class Spell {
 				i++;
 				argc = Script.get(i).intValue();		
 
-				caster.sendMessage(cmd + " " + argc);
+				//caster.sendMessage(cmd + " " + argc);
 
 				for (int j = 1; j <= argc; j++) {
 
@@ -149,8 +144,8 @@ public class Spell {
 
 			if (cmd < 0) {
 				
-				caster.sendMessage((cmd - 4) + " ");
-				i = -(cmd) + 4;
+				//caster.sendMessage((cmd) + " ");
+				i = -(cmd);
 				continue SPELL;
 			}
 

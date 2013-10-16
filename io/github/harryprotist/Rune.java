@@ -28,8 +28,6 @@ public class Rune {
  
 		ArrayList<Integer> spell = new ArrayList<Integer>();	
 		ArrayList<String> usedOrb = new ArrayList<String>();; // orbitals that have occured before to be imp.
-		// TODO: switch to some sort of map because this has some problems
-
 
 	// this goes in a 4 part cycle, +x, -z, -x and +z	
 	READ:
@@ -51,6 +49,7 @@ public class Rune {
 			if (b.getType() == Material.AIR) break READ;
 			else {
 				spell.add(b.getType().getId() );
+				usedOrb.add("0");
 			}
 
 			// now look for the args
@@ -74,17 +73,18 @@ public class Rune {
 			// make sure usedOrb has same indexes as spell
 			usedOrb.add("0");
 
-			act.sendMessage("Read " + b.getType().getId() + " with " + argc + " args");
+			//act.sendMessage("Read " + b.getType().getId() + " with " + argc + " args");
 		}
 		orbO += acs[0].compareTo(acs[2]);
 		orbC += acs[1].compareTo(acs[3]);
-		act.sendMessage("Orbital is " + orbO + " out, and " + orbC + " counterclockwise.");
+		//act.sendMessage("Orbital is " + orbO + " out, and " + orbC + " counterclockwise.");
 
 		String orbId = orbO + " " + orbC;
 		if (usedOrb.contains(orbId) ) {
-			spell.add(new Integer( -(usedOrb.indexOf(orbId))));	
+			spell.add(new Integer( -(usedOrb.indexOf(orbId) + 1)));	
 			break;
 		}
+		usedOrb.remove(usedOrb.size() - 1);
 		usedOrb.add(orbId);
 	}
 

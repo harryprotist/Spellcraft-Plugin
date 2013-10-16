@@ -56,7 +56,7 @@ public final class Mana implements Listener {
 					Integer m = (Integer)Plugin.getMeta(p, "mana");
 					if (m == null) m = new Integer(0);
 
-					p.sendMessage("Casting last spell. Current MP: " + m.toString());			
+					//p.sendMessage("Casting last spell. Current MP: " + m.toString());			
 					
 					int nm = spell.Excecute(m.intValue(), p);
 					Plugin.setMeta(p, "mana", new Integer(nm));
