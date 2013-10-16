@@ -62,7 +62,7 @@ public class Spell {
 		return Functions.get(key);
 	}
 	public static Integer getValue(Integer key) {
-		return Values.get(key);
+		return ((Values.get(key) == null)? (10):(Values.get(key)));
 	}
 
 	public static String dumpMaps() {
@@ -81,6 +81,7 @@ public class Spell {
 
 		return ret;
 	}
+
 	public String dumpScript() {
 
 		if (Script == null) return "";	
@@ -88,11 +89,22 @@ public class Spell {
 		String ret = "";
 		for (Integer i : Script) {
 
-			ret += i.toString() + ", ";	
+			ret += i.toString() + " ";	
 		}
 
 		return ret;
 	}
+	public static Spell parseString(String s) {
+
+		ArrayList<Integer> script = new ArrayList<Integer>();
+		for (String ss : s.split(" ")) {
+			
+			script.add(new Integer(ss) );
+		}
+
+		return new Spell(script); 
+	}
+	
 
 	// script is a list of functions
 	private ArrayList<Integer> Script;

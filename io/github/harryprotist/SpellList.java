@@ -18,69 +18,32 @@ import java.util.*;
 
 public final class SpellList {
 
-	private ArrayList<String> Spells;		
+	private Map<String, Spell> Spells;
 	private Spellcraft Plugin;
 
 	public SpellList(Spellcraft p) {
 
-		Spells = new ArrayList<String>();
-		Spells.add("burn");
-		Spells.add("slay");
-		Spells.add("haste");
+		Spells = new HashMap<String, Spell>();
 
 		Plugin = p;	
 	}	
-	public boolean lookup(String spell) {
-		return (Spells.contains(spell));
+	public boolean lookup(String word) {
+		return (Spells.containsKey(word));
 	}
 	
+	public boolean register(String word, Spell spell) {
 
-	public boolean cast(String spell, Player p) {
-		int cost = 0;
-		int mana = (Integer)Plugin.getMeta(p, "mana");
-		int s = -1;
+		if (Spells.get(word) != null || spell == null) {
+			return false;
+		}	
+		
+		Spells.put(word, spell);
 
-		if		(spell.equals("burn") ) {
-				s = burn(p, mana);
-		} else if	(spell.equals("slay") ) {
-
-		} else if	(spell.equals("haste") ) {
-
-		} 
-
-		if (s < 0) { 
-			return false;	
-		}
-		Plugin.setMeta(p, "mana", new Integer(s));
 		return true;
 	}
-	
-	/////////////////////////////////////////////////////
-	/*
-	   Sets a block on fire and makes an explosion
-	*/
-	public int burn(Player p, int mana) {
 
-		int remain;
-		if (mana > 16) remain = mana - 16;
-		else return -1;
+	public Spell get(String word) {
 		
-		Block b = p.getTargetBlock(null, 50);
-		World w = b.getWorld();
-
-		Block f = w.getBlockAt(b.getX(), b.getY() + 1, b.getZ() );	
-		if (f.getType() == Material.AIR) {
-
-			f.setType(Material.FIRE);
-			w.createExplosion(	(double)f.getX(),
-						(double)f.getY(),
-						(double)f.getZ(),
-						0.25f,
-						false, // no fire
-						false // doesn't break blocks
-			);	
-		}	
-
-		return remain;
+		return Spells.get(word);
 	}
 }

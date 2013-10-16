@@ -16,6 +16,10 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.Location;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 
 import java.util.*;
 import java.lang.reflect.*;
@@ -61,17 +65,38 @@ public final class Mana implements Listener {
 					int nm = spell.Excecute(m.intValue(), p);
 					Plugin.setMeta(p, "mana", new Integer(nm));
 				}
-			/*	} if (Plugin.Spells.lookup(spell) ) {
-	
-					if (!Plugin.Spells.cast(spell, p) ) {
-						p.sendMessage("Casting Failed");
-					}
-				} else {
-	
-					p.sendMessage("Casting Failed");
-				}
-			*/
 			}
+		} else if (a == Action.LEFT_CLICK_BLOCK || a == Action.LEFT_CLICK_AIR) {
+		
+			ItemStack is = p.getInventory().getItemInHand();
+		
+			if (!is.hasItemMeta()) {
+				return;
+			}
+
+			ItemMeta im = is.getItemMeta();
+			List<String> lore = im.getLore();
+
+			if (lore != null && lore.size() == 3 && lore.get(0).equals("SPELLCRAFT") ) {
+
+				Integer m = new Integer(lore.get(1));
+				Spell sp = Spell.parseString(lore.get(2));
+
+				m = new Integer(sp.Excecute(m.intValue(), p) );
+
+				ArrayList<String> newLore = new ArrayList<String>();
+				newLore.add("SPELLCRAFT");
+				newLore.add(m.toString());
+				newLore.add(sp.dumpScript());
+
+				if (m.intValue() > 0) {
+					im.setLore(newLore);
+				} else {
+					im.setLore(null);
+				}
+				is.setItemMeta(im);
+			}
+
 		} else if (a == Action.RIGHT_CLICK_BLOCK) {
 		// check to see if a rune is being activated
 
@@ -79,12 +104,9 @@ public final class Mana implements Listener {
 			World w = b.getWorld();
 
 			// now make sure the block is in rune configuration
-			if (	w.getBlockAt(b.getX() + 1, b.getY(), b.getZ()).getType() == Material.REDSTONE_BLOCK &&
-				w.getBlockAt(b.getX() - 1, b.getY(), b.getZ()).getType() == Material.REDSTONE_BLOCK &&
-				w.getBlockAt(b.getX(), b.getY(), b.getZ() + 1).getType() == Material.REDSTONE_BLOCK &&
-				w.getBlockAt(b.getX(), b.getY(), b.getZ() - 1).getType() == Material.REDSTONE_BLOCK ) {
+			if (isRune(b) ) {
 
-				Plugin.getLogger().info("It's time to kick ass and activate runes.\nAnd I'm all outta kick ass");
+				Plugin.getLogger().info("It's time to kick ass and activate runes.And I'm all outta kick ass");
 			
 				// let's get this sh*t going
 				Spell sp = Rune.parseRune(p, b);
@@ -92,4 +114,115 @@ public final class Mana implements Listener {
 			}
 		}
 	}
+
+	private boolean isRune(Block b) {
+		World w = b.getWorld();
+		Material m = Material.MOSSY_COBBLESTONE;
+		if (	w.getBlockAt(b.getX() + 1, b.getY(), b.getZ()).getType() == m &&
+			w.getBlockAt(b.getX() - 1, b.getY(), b.getZ()).getType() == m &&
+			w.getBlockAt(b.getX(), b.getY(), b.getZ() + 1).getType() == m &&
+			w.getBlockAt(b.getX(), b.getY(), b.getZ() - 1).getType() == m ) {
+
+			return true;				
+		}
+		return false;
+	}
+
+	// CALLED FROM PLUGIN FOR MANAGING MANA
+
+	private static final int RUNE_RANGE = 3;	
+
+	public void register(Player p, String s) {
+		
+		World w = p.getWorld();	
+		Block b = p.getTargetBlock(null, RUNE_RANGE);
+		
+		if (isRune(b) ) {
+
+			Spell sp = Rune.parseRune(p, b);
+
+			if (Plugin.Spells.register(s, sp) ) {
+				p.sendMessage(s + " is now a spell");
+				return;
+			}
+		}
+	}
+
+	public void imbue(Player p, String m) {
+		
+		ItemStack is = p.getInventory().getItemInHand(); 
+		Block b = p.getTargetBlock(null, RUNE_RANGE);
+
+		Integer n;
+		try {
+			n = new Integer(m); // just checks is m can be an int
+		} catch (NumberFormatException e) {
+			return;
+		}
+
+		if (isRune(b) && !is.getType().isBlock() && is.getAmount() == 1) {
+
+			Integer pn = (Integer)Plugin.getMeta(p, "mana");
+
+			if (pn.compareTo(n) < 0) {
+				return;	
+			} else {
+				Plugin.setMeta(p, "mana", new Integer(pn - n));
+			}			
+
+			Spell sp = Rune.parseRune(p, b);
+			String sps = sp.dumpScript();
+
+			ItemMeta im = is.getItemMeta();
+
+			ArrayList<String> newLore = new ArrayList<String>();
+			newLore.add("SPELLCRAFT"); // so I can tell it's from my plugin
+			newLore.add(m);
+			newLore.add(sps);
+
+			im.setLore(newLore);
+			is.setItemMeta(im);
+			
+			p.sendMessage("Your item has been imbued with magic");
+		}
+	}
+
+	public void perform(Player p) {
+
+		World w = p.getWorld();
+		Block b = p.getTargetBlock(null, RUNE_RANGE);
+
+		if (isRune(b) ) {
+
+			Spell sp = Rune.parseRune(p, b);
+			Integer m = Spell.getValue(b.getType().getId()) * 10;	
+
+			p.sendMessage("Performing ritual");		
+
+			b.setType(Material.AIR);
+			sp.Excecute(m.intValue(), p);	
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

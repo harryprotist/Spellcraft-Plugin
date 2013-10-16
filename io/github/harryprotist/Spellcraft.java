@@ -61,27 +61,20 @@ public final class Spellcraft extends JavaPlugin {
 			// the player wants to do something mana related
 			Player p = (Player) sender;	
 
-			// Mana commands: check, absorb, open, close
-			if (args.length > 0 && args[0].equalsIgnoreCase("absorb") ) {
+			// Mana commands: check, toggle on, register, imbue, perform, cast
+			// register binds a spell to a word
+			// imbue binds a spell and mana to an item
+			// perform consumes a block and uses it to power a rune
 
-				PlayerInventory pinv = p.getInventory();
-				ItemStack is = pinv.getItemInHand();				
-				ItemStack n = new ItemStack(Material.AIR, 0);
-	
-				Integer m = (Integer)getMeta(p, "mana");
-				if (m == null) m = 0;
-
-				setMeta(p, "mana", new Integer(m + is.getAmount() ) );
-				p.setItemInHand(n);
-			} else if (args.length > 0 && args[0].length() > 0 && (args[0].charAt(0) == 'c' || args[0].charAt(0) == 'C')) {
+			// ready to cast a spell
+			if (args.length > 0 && args[0].length() > 0 && (args[0].charAt(0) == 'c' || args[0].charAt(0) == 'C')) {
 								
 				if (args.length > 1 && Spells.lookup(args[1])) {
-					if (!Spells.cast(args[1], p)) {
-						sender.sendMessage("Casting Failed!");
-					}
-					setMeta(p, "lastspell", args[1]);
-				}	
 
+					setMeta(p, "lastspell", Spells.get(args[1]));
+				}	
+			
+			// toggle
 			} else if (args.length > 0 && args[0].length() > 0 && (args[0].charAt(0) == 'o' || args[0].charAt(0) == 'O')) {
 				
 				Boolean b = (Boolean)getMeta(p, "manaon");
@@ -90,7 +83,27 @@ public final class Spellcraft extends JavaPlugin {
 				sender.sendMessage("Setting mana to " + (new Boolean(!b.booleanValue()).toString()) );
 
 				setMeta(p, "manaon", new Boolean(!b.booleanValue()));
- 
+
+			// register a spell
+			} else if (args.length > 0 && args[0].length() > 0 && (args[0].charAt(0) == 'r' || args[0].charAt(0) == 'O')) {
+
+				if (args.length > 1) {
+					ManaEvents.register(p, args[1]);
+				}
+
+			// imbue an item
+			} else if (args.length > 0 && args[0].length() > 0 && (args[0].charAt(0) == 'i' || args[0].charAt(0) == 'I')) {
+
+				if (args.length > 1) {
+					ManaEvents.imbue(p, args[1]);
+				}
+
+			// perform a ritual
+			} else if (args.length > 0 && args[0].length() > 0 && (args[0].charAt(0) == 'i' || args[0].charAt(0) == 'I')) {
+
+				ManaEvents.perform(p);
+			
+			// otherwise print MP
 			} else {
 				Integer m = (Integer)getMeta(p, "mana");
 				if (m == null) m = 0;
