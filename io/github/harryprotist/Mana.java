@@ -39,15 +39,14 @@ public final class Mana implements Listener {
 		Player p = event.getPlayer();		
 
 		Action a = event.getAction();
-		if ((a == Action.LEFT_CLICK_BLOCK || a == Action.LEFT_CLICK_AIR) && p.isSneaking()) {
+		if ((a == Action.LEFT_CLICK_BLOCK || a == Action.LEFT_CLICK_AIR) ) {
 		// check for autocasting
 
 			Boolean mo = (Boolean)Plugin.getMeta(p, "manaon");
-			if (mo == null || !mo.booleanValue() ) {
-				return;
-			
-			} else if (mo.booleanValue()) {
-				
+			if (mo == null) mo = new Boolean(false);
+
+			if (mo.booleanValue() && p.isSneaking()) {
+	
 				Spell spell = (Spell)Plugin.getMeta(p, "lastspell");			
 				if (spell == null) { 
 			
@@ -55,46 +54,47 @@ public final class Mana implements Listener {
 					return;
 				
 				} else {
-					
-
+	
 					Integer m = (Integer)Plugin.getMeta(p, "mana");
 					if (m == null) m = new Integer(0);
-
+	
 					//p.sendMessage("Casting last spell. Current MP: " + m.toString());			
 					
 					int nm = spell.Excecute(m.intValue(), p);
 					Plugin.setMeta(p, "mana", new Integer(nm));
 				}
-			}
-		} else if (a == Action.LEFT_CLICK_BLOCK || a == Action.LEFT_CLICK_AIR) {
 		
-			ItemStack is = p.getInventory().getItemInHand();
-		
-			if (!is.hasItemMeta()) {
-				return;
-			}
-
-			ItemMeta im = is.getItemMeta();
-			List<String> lore = im.getLore();
-
-			if (lore != null && lore.size() == 3 && lore.get(0).equals("SPELLCRAFT") ) {
-
-				Integer m = new Integer(lore.get(1));
-				Spell sp = new Spell(Spell.parseString(lore.get(2)), Plugin);
-
-				m = new Integer(sp.Excecute(m.intValue(), p) );
-
-				ArrayList<String> newLore = new ArrayList<String>();
-				newLore.add("SPELLCRAFT");
-				newLore.add(m.toString());
-				newLore.add(sp.dumpScript());
-
-				if (m.intValue() > 0) {
-					im.setLore(newLore);
-				} else {
-					im.setLore(null);
+			} else {
+	
+				ItemStack is = p.getInventory().getItemInHand();
+			
+				if (!is.hasItemMeta()) {
+					return;
 				}
-				is.setItemMeta(im);
+	
+				ItemMeta im = is.getItemMeta();
+				List<String> lore = im.getLore();
+	
+				if (lore != null && lore.size() == 3 && lore.get(0).equals("SPELLCRAFT") ) {
+	
+					Integer m = new Integer(lore.get(1));
+					Spell sp = new Spell(Spell.parseString(lore.get(2)), Plugin);
+	
+					m = new Integer(sp.Excecute(m.intValue(), p) );
+	
+					ArrayList<String> newLore = new ArrayList<String>();
+					newLore.add("SPELLCRAFT");
+					newLore.add(m.toString());
+					newLore.add(sp.dumpScript());
+	
+					if (m.intValue() > 0) {
+						im.setLore(newLore);
+					} else {
+						im.setLore(null);
+					}
+					is.setItemMeta(im);
+				}
+	
 			}
 
 		} else if (a == Action.RIGHT_CLICK_BLOCK) {
