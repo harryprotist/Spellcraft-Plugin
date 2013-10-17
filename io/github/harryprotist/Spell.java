@@ -182,14 +182,14 @@ public class Spell {
 					loc = caster.getTargetBlock(null, argv.get(0).intValue()).getLocation();
 
 					manaUsed += (argv.get(0).intValue() / 2) + 1;
-					if (manaSource - manaUsed <= 0) return 0;
+					if (manaSource - manaUsed < 0) return 0;
 				break;
 				case 2:
 				// Sets current block on fire, if it's air
 					if (argc != 0) break SPELL;
 
 					manaUsed += 64;
-					if (manaSource - manaUsed <= 0) return 0;
+					if (manaSource - manaUsed < 0) return 0;
 
 					if (w.getBlockAt(loc).getType() == Material.AIR) {
 						w.getBlockAt(loc).setType(Material.FIRE);
@@ -202,7 +202,7 @@ public class Spell {
 					loc.add(0.0, -1.0, 0.0);
 
 					manaUsed += 1;
-					if (manaSource - manaUsed <= 0) return 0;
+					if (manaSource - manaUsed < 0) return 0;
 				break;
 				case 4:
 				// Moves location up 1
@@ -211,7 +211,7 @@ public class Spell {
 					loc.add(0.0, 1.0, 0.0);
 
 					manaUsed += 1;
-					if (manaSource - manaUsed <= 0) return 0;
+					if (manaSource - manaUsed < 0) return 0;
 				break;
 				case 5:
 				// Moves location +1 x
@@ -220,7 +220,7 @@ public class Spell {
 					loc.add(1.0, 0.0, 0.0);
 
 					manaUsed += 1;
-					if (manaSource - manaUsed <= 0) return 0;
+					if (manaSource - manaUsed < 0) return 0;
 				break;
 				case 6:
 				// Moves location -1 x
@@ -229,7 +229,7 @@ public class Spell {
 					loc.add(-1.0, 0.0, 0.0);
 
 					manaUsed += 1;
-					if (manaSource - manaUsed <= 0) return 0;
+					if (manaSource - manaUsed < 0) return 0;
 				break;	
 				case 7:
 				// Moves location +1 z
@@ -238,7 +238,7 @@ public class Spell {
 					loc.add(0.0, 0.0, 1.0);
 
 					manaUsed += 1;
-					if (manaSource - manaUsed <= 0) return 0;
+					if (manaSource - manaUsed < 0) return 0;
 				break;
 				case 8:
 				// Moves location -1 z
@@ -247,7 +247,7 @@ public class Spell {
 					loc.add(0.0, 0.0, -1.0);
 
 					manaUsed += 1;
-					if (manaSource - manaUsed <= 0) return 0;
+					if (manaSource - manaUsed < 0) return 0;
 				break;
 				case 9:
 				// Takes an arg for explosion power
@@ -255,7 +255,7 @@ public class Spell {
 					
 					manaUsed += Math.pow(2 * argv.get(0).intValue(), 3);
 					//caster.sendMessage(manaUsed + " is apparently too much");
-					if (manaSource - manaUsed <= 0) return 0;
+					if (manaSource - manaUsed < 0) return 0;
 
 					w.createExplosion(loc, argv.get(0).intValue());
 				break;
@@ -264,7 +264,7 @@ public class Spell {
 					if (argc != 1) break SPELL;
 
 					manaUsed += Math.pow(4 * argv.get(0).intValue(), 3);
-					if (manaSource - manaUsed <= 0) return 0;
+					if (manaSource - manaUsed < 0) return 0;
 
 					w.createExplosion(loc, argv.get(0).intValue(), true);
 				break;
@@ -276,7 +276,7 @@ public class Spell {
 					if (val == null) val = new Integer(10);
 
 					manaUsed += Math.pow(val, 2);
-					if (manaSource - manaUsed <= 0) return 0;
+					if (manaSource - manaUsed < 0) return 0;
 
 					if (w.getBlockAt(loc).getType() == Material.AIR) {
 						w.getBlockAt(loc).setTypeId(argv.get(0).intValue());
@@ -295,7 +295,7 @@ public class Spell {
 						w.getBlockAt(loc).breakNaturally();
 					}
 					manaUsed += 1;
-					if (manaSource - manaUsed <= 0) return 0;
+					if (manaSource - manaUsed < 0) return 0;
 				break;
 				case 13:
 				// sets memory address of arg 1 to the ID of arg 2
@@ -306,7 +306,7 @@ public class Spell {
 					Integer mvalue = argv.get(1);
 
 					manaUsed += 1;
-					if (manaSource - manaUsed <= 0) return 0;
+					if (manaSource - manaUsed < 0) return 0;
 					
 					mem.put(memorym, mvalue);
 				break;
@@ -318,7 +318,7 @@ public class Spell {
 					Integer avalue = argv.get(1);
 
 					manaUsed += 1;
-					if (manaSource - manaUsed <= 0) return 0;
+					if (manaSource - manaUsed < 0) return 0;
 
 					mem.put(memorya, argv.get(0) + avalue); // argv[0] is the value of the block stored at memID
 				break;
@@ -330,7 +330,7 @@ public class Spell {
 					Integer svalue = argv.get(1);
 
 					manaUsed += 1;
-					if (manaSource - manaUsed <= 0) return 0;
+					if (manaSource - manaUsed < 0) return 0;
 
 					// argv[0] is the value of the block stored at memID
 					Integer newVal = new Integer(argv.get(0) - svalue);
@@ -341,7 +341,7 @@ public class Spell {
 					if (argc != 1) break SPELL;	
 					
 					manaUsed += 1;
-					if (manaSource - manaUsed <= 0) return 0;
+					if (manaSource - manaUsed < 0) return 0;
 
 					if (argv.get(0).intValue() == 0) break SPELL;
 				break;
@@ -350,7 +350,7 @@ public class Spell {
 					if (argc != 0) break SPELL;
 
 					manaUsed += 5;
-					if (manaSource - manaUsed <= 0) return 0;
+					if (manaSource - manaUsed < 0) return 0;
 
 					if (Plugin != null) {
 		

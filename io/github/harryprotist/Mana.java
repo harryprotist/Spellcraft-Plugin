@@ -163,8 +163,9 @@ public final class Mana implements Listener {
 		if (isRune(b) && !is.getType().isBlock() && is.getAmount() == 1) {
 
 			Integer pn = (Integer)Plugin.getMeta(p, "mana");
+			if (pn == null) pn = new Integer(0);
 
-			if (pn.compareTo(n) < 0) {
+			if (pn.compareTo(n) < 0 || n.intValue() <= 0) {
 				return;	
 			} else {
 				Plugin.setMeta(p, "mana", new Integer(pn - n));
