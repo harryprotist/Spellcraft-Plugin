@@ -23,6 +23,7 @@ import io.github.harryprotist.block.MemSet;
 import io.github.harryprotist.block.PlaceBlock;
 import io.github.harryprotist.block.SetTargetLooking;
 import io.github.harryprotist.block.ShiftLoc;
+import io.github.harryprotist.block.ShootArrow;
 
 import java.util.*;
 import java.io.*;
@@ -244,6 +245,9 @@ public class Spell {
 				break;
 				case 17: function = new GiveMana(argv, caster, loc, Plugin);
 				// transfer mana to caster
+				break;
+				case 18: function = new ShootArrow(argv, caster, loc);
+				// shoot an arrow towards loc with power argv[0]	
 				break;
 				default:
 					break SPELL;
