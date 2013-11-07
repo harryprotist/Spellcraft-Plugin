@@ -46,4 +46,11 @@ public final class SpellList {
 		
 		return Spells.get(word);
 	}
+
+	public String dump() {
+		return " "; // to be implemented
+	}
+	public void load(String s) {
+		// to be implemented
+	}
 }

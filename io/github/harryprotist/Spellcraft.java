@@ -11,6 +11,7 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.Material;
 
 import java.util.*;
+import java.io.*;
 
 //import SpellList;
 
@@ -139,7 +140,151 @@ public final class Spellcraft extends JavaPlugin {
 		}
 		return null;
 	}
-	// TODO:
-	// add basic spell system
-	// basic mana system
+
+	//////////////////// saving and loading stuff	
+	public boolean saveSpells() {
+		
+		FileWriter f;
+		try { 
+			f = new FileWriter("spelllist.txt", false);
+	
+			String dat = Spells.dump();		
+			f.write(dat);
+			f.close();
+	
+		}
+		catch ( IOException e ) { return false; }
+		return true;
+	}
+	public boolean loadSpells() {
+
+		BufferedReader file; 
+		String s = "";
+		try { file = new BufferedReader(new FileReader("spelllist.txt")); }
+		catch (FileNotFoundException e) { return false; }
+
+		String line;
+		try {
+			while ( (line = file.readLine()) != null ) {
+
+				s += line + "\n";	
+			}
+		}
+		catch (IOException e) {
+			return false;
+		}
+
+		Spells.load(s);
+		return true;
+	}
+	public boolean savePlayerData() {
+
+		BufferedReader file; 
+		try { file = new BufferedReader(new FileReader("spelllist.txt")); }
+		catch (FileNotFoundException e) { return false; }
+
+		//Read Current File into list
+		//Parse into data
+		//Update data based on list of current players
+		//???
+		//Profit
+		//Write to file
+
+		ArrayList<String> Names = new ArrayList<String>();
+		ArrayList<Integer> Manas = new ArrayList<Integer>();
+		ArrayList<Spell>  Spells = new ArrayList<Spell>();
+	
+		String line;
+		try {
+			while ( (line = file.readLine()) != null ) {
+
+				String[] dat = line.split(":");
+				if (dat.length != 3) {
+					return false;
+				}	
+
+				Names.add(dat[0]);
+				try {
+					Manas.add(new Integer(dat[1]));
+				} catch (NumberFormatException e) { 
+					return false;
+				}
+
+				Spells.add(Spell.parseString(dat[2]));
+			}
+		} catch (IOException e) {
+			return false;
+		}
+
+		FileWriter f;
+		try {
+			f = new FileWriter("mana.txt", true);
+			
+			Player[] pList = getServer().getOnlinePlayers();	
+			for (Player p : pList) {
+			
+				//yeeaah!
+				int i = 0;
+				if ( (i = Names.indexOf(p.getPlayerListName())) >= 0) {
+
+					Manas.set(i, (Integer)getMeta(p, "mana"));
+					Spells.set(i, (Spell)getMeta(p, "lastspell"));
+				} else {
+				
+					Names.add(p.getPlayerListName());
+					Manas.add((Integer)getMeta(p, "mana"));
+					Spells.add((Spell)getMeta(p, "lastspell"));
+				}
+			}
+			
+			String s = ""; 
+			for (int l = 0; l < Names.size(); ++l) {
+
+				s += Names.get(l) + ":" + Manas.get(l) + ":" + Spells.get(l).dumpScript() + "\n";
+			}
+			f.write( s );
+			f.close();
+		} catch (IOException e) {
+
+			return false;
+		}
+		return true;
+	}
+	public boolean loadPlayerData(Player p) {
+
+		BufferedReader file; 
+		try { file = new BufferedReader(new FileReader("mana.txt")); }
+		catch (FileNotFoundException e) { return false; }
+
+		ArrayList<String> Names = new ArrayList<String>();
+		ArrayList<Integer> Manas = new ArrayList<Integer>();
+		ArrayList<Spell> Spells = new ArrayList<Spell>();
+
+		String line;
+		try {
+			while ( (line = file.readLine()) != null ) {
+
+				String[] dat = line.split(":");
+				if (dat.length != 3) {
+					return false;
+				}
+				
+				Names.add(dat[0]);
+				Manas.add(new Integer(dat[1]));
+				Spells.add(Spell.parseString(dat[2]));
+			}
+		}
+		catch (IOException e) {
+			return false;
+		}
+
+		int i = 0;
+		i = Names.indexOf(p.getPlayerListName());
+		if (i < 0) return true; // they just don't have any data yet
+
+		setMeta(p, "mana", Manas.get(i));
+		setMeta(p, "lastspell", Spells.get(i));
+
+		return true;	
+	}
 }
