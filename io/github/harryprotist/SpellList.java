@@ -48,9 +48,40 @@ public final class SpellList {
 	}
 
 	public String dump() {
-		return " "; // to be implemented
+
+		String s = "";
+		Iterator it = Spells.entrySet().iterator();
+		while (it.hasNext() ) {
+			Map.Entry e = (Map.Entry)it.next();
+	
+			s +=	e.getKey() + ":"
+			    	+ ((Spell)e.getValue()).dumpScript() + "\t";	
+		}
+		return s;
 	}
-	public void load(String s) {
-		// to be implemented
+	public boolean load(String s) {
+		
+		Plugin.getLogger().info("about to check nulls in " + s);//
+		
+		if (s == null) return false;
+		String[] ents = s.split("\t");	
+		if (ents == null) return false;
+		Plugin.getLogger().info("ents length: " + ents.length);
+
+		Plugin.getLogger().info("entered function");//
+
+		for (String ent : ents) {
+
+			Plugin.getLogger().info("ents length: " + ent.length());
+			
+			String[] pair = ent.split(":");
+			if (pair.length != 2) {
+				return false;
+			}
+			
+			register(pair[0], Spell.parseString(pair[1]));
+			Plugin.getLogger().info(pair[0] + "   " + pair[1]);
+		}
+		return true;
 	}
 }

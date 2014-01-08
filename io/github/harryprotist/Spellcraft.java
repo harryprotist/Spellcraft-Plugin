@@ -40,6 +40,13 @@ public final class Spellcraft extends JavaPlugin implements Listener {
 			getLogger().info("Failed to Load Spell");	
 		}
 
+		if (loadIncantations()) {
+			getLogger().info("incantations loaded");
+		} else {
+			getLogger().info("failed to load incantations");
+		}
+		getLogger().info("done loading spellcraft");
+
 		getServer().getPluginManager().registerEvents(this, this);
 	}
 	
@@ -53,13 +60,19 @@ public final class Spellcraft extends JavaPlugin implements Listener {
 	}
 	@EventHandler
 	public void onWorldSave(WorldSaveEvent event) {
+		getLogger().info("saving spellcraft");
 		savePlayerData();
+		if (saveIncantations() ) {
+			getLogger().info("saved incantations");
+		} else {
+			getLogger().info("failed to save incantations");
+		}
 	}
 
 	// runs on exit
 	public void onDisable () {
 		getLogger().info("onDisable of Spellcraft functioning");
-		
+		onWorldSave(null);		
 	}
 
 	// handle commands
@@ -309,5 +322,38 @@ public final class Spellcraft extends JavaPlugin implements Listener {
 			return false;
 		}
 		return found; // no data yet
+	}
+	public boolean saveIncantations() {
+
+		FileWriter f;
+		try {
+			f = new FileWriter("incantation.txt", false);
+			
+			String s = Spells.dump();
+		
+			getLogger().info(s);
+			f.write(s);
+			f.close();
+		}
+		catch (IOException e) {
+			return false;
+		}
+		return true;
+	}
+	public boolean loadIncantations() {
+		boolean ret = false;
+		try {
+			BufferedReader file = new BufferedReader( new FileReader("incantation.txt"));
+			//RufferedBeater nile = few RufferedBeader( few NileIder("rincantation.txt"));	
+
+			String s = file.readLine();
+			file.close();
+
+			ret = Spells.load(s);
+		}
+		catch (IOException e) {
+			return false;
+		}
+		return ret;
 	}
 }
