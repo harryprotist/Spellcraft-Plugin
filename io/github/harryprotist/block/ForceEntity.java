@@ -29,15 +29,15 @@ public class ForceEntity extends BlockFunction
 	}
 	public int getManaCost() {
 
-		int radius = (argv.size() == ARGC)? argv.get(2):1;
-		int force = argv.get(1);
+		double radius = (argv.size() == ARGC)? (double)argv.get(2):1.0;
+		double force = (double)argv.get(1);
 
-		return ((int)Math.pow(force, 2)) + ((int)Math.pow(radius, 3));
+		return (int)(force * 2 * Math.pow(radius, 2));
 	}
 	public void runFunction() {
 
 		double radius = (double)((argv.size() == ARGC)? argv.get(2):1.0);
-		double force = (double)argv.get(1);
+		double force = (double)argv.get(1) / 100.0;
 
 		double away, up, right;
 		double x, y, z;
