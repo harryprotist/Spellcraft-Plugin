@@ -43,7 +43,7 @@ public class ForceEntity extends BlockFunction
 		double x, y, z;
 
 		int func = sp.getFunction(argv.get(0));
-		caster.sendMessage("function #: " + func);
+		//caster.sendMessage("function #: " + func);
 
 		if (func == 3) {
 			away  = 0.0; 
