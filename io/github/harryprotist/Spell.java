@@ -24,6 +24,7 @@ import io.github.harryprotist.block.PlaceBlock;
 import io.github.harryprotist.block.SetTargetLooking;
 import io.github.harryprotist.block.ShiftLoc;
 import io.github.harryprotist.block.ShootArrow;
+import io.github.harryprotist.block.ForceEntity;
 
 import java.util.*;
 import java.io.*;
@@ -248,6 +249,9 @@ public class Spell {
 				break;
 				case 18: function = new ShootArrow(argv, caster, loc);
 				// shoot an arrow towards loc with power argv[0]	
+				break;
+				case 19: function = new ForceEntity(argv, caster, loc);
+				// apply a force to entities in an area
 				break;
 				default:
 					break SPELL;

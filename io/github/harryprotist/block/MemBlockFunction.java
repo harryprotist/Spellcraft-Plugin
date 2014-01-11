@@ -22,7 +22,7 @@ public abstract class MemBlockFunction extends BlockFunction
 
 		this.mem = mem;
 
-		rargv = script.subList(i, i + a.size() );
+		rargv = script.subList(i + 1, i + 1 + a.size() );
 		if (rargv == null) rargv = new ArrayList<Integer>();
 	}
 }
