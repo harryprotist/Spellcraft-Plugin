@@ -250,7 +250,7 @@ public class Spell {
 				case 18: function = new ShootArrow(argv, caster, loc);
 				// shoot an arrow towards loc with power argv[0]	
 				break;
-				case 19: function = new ForceEntity(argv, caster, loc);
+				case 19: function = new ForceEntity(argv, caster, loc, this);
 				// apply a force to entities in an area
 				break;
 				default:
