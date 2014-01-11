@@ -40,12 +40,24 @@ public class ShiftLoc extends BlockFunction
 		double x, y, z;
 
 		Vector v = caster.getLocation().getDirection().normalize();
-		if (v.getX() > v.getZ()) {
-			x = away;
-			z = right;
+		if (Math.abs(v.getX()) > Math.abs(v.getZ())) {
+
+			if (v.getX() > 0) {
+				x = away;
+				z = -right;
+			} else {
+				x = -away;
+	 			z = right;
+			}
 		} else {
-			z = away;
-			x = right;
+
+			if (v.getZ() > 0) {
+				x = right; 
+				z = away;
+			} else {
+				x = -right;
+				z = -away;
+			}
 		}
 		y = up;
 
