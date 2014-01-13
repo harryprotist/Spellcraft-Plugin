@@ -30,7 +30,7 @@ public class GiveMana extends BlockFunction
 	}	
 	public int getManaCost() {
 		
-		return 5;
+		return 1;
 	}
 	public void runFunction() {
 		

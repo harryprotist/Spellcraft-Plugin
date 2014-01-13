@@ -28,7 +28,7 @@ public class MemAdd extends MemBlockFunction
 	}
 	public int getManaCost() {
 		
-		return 1;
+		return 0;
 	}
 	public void runFunction() {
 		

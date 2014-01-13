@@ -8,6 +8,7 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.entity.Entity;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.World;
@@ -24,7 +25,8 @@ import io.github.harryprotist.block.PlaceBlock;
 import io.github.harryprotist.block.SetTargetLooking;
 import io.github.harryprotist.block.ShiftLoc;
 import io.github.harryprotist.block.ShootArrow;
-import io.github.harryprotist.block.ForceEntity;
+import io.github.harryprotist.block.EntitySelectArea;
+import io.github.harryprotist.block.EntityForce;
 
 import java.util.*;
 import java.io.*;
@@ -146,6 +148,8 @@ public class Spell {
 
 		Location loc = caster.getLocation();
 
+		ArrayList<Entity> entList = new ArrayList<Entity>();
+
 		//caster.sendMessage(dumpScript());
 
 		SPELL:
@@ -250,8 +254,11 @@ public class Spell {
 				case 18: function = new ShootArrow(argv, caster, loc);
 				// shoot an arrow towards loc with power argv[0]	
 				break;
-				case 19: function = new ForceEntity(argv, caster, loc, this);
-				// apply a force to entities in an area
+				case 19: function = new EntityForce(argv, caster, loc, this, entList);
+				// apply a force to entities selected
+				break;
+				case 20: function = new EntitySelectArea(argv, caster, loc, entList);
+				// select entities in an area
 				break;
 				default:
 					break SPELL;
@@ -261,7 +268,7 @@ public class Spell {
 				break SPELL;
 			}
 
-			manaUsed += function.getManaCost();
+			manaUsed += function.getManaCost() + 1;
 			if (manaSource < manaUsed) return 0; 
 
 			function.runFunction();

@@ -24,7 +24,7 @@ public class SetTargetLooking extends BlockFunction
 	}
 	public int getManaCost() {
 	
-		return (argv.get(0) / 2) + 1;
+		return (argv.get(0) / 2);
 	}
 	public void runFunction() {
 	

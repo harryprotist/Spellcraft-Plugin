@@ -106,6 +106,7 @@ public final class Mana implements Listener {
 			// now make sure the block is in rune configuration
 			if (isRune(b) ) {
 
+				p.sendMessage("activating rune");
 				Plugin.getLogger().info("It's time to kick ass and activate runes.And I'm all outta kick ass");
 			
 				// let's get this sh*t going

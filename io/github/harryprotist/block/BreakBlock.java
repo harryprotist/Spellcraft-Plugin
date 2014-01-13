@@ -30,9 +30,9 @@ public class BreakBlock extends BlockFunction
 	public int getManaCost() {
 		
 		if (argv.size() == 1 && target.getType().getId() != argv.get(0).intValue()) {
-			return 1;
+			return 0;
 		} else {
-			return target.getType().getMaxDurability() + 1;
+			return target.getType().getMaxDurability();
 		}
 	}
 	public void runFunction() {
