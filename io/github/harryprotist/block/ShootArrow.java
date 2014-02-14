@@ -24,7 +24,7 @@ public class ShootArrow extends BlockFunction
 	}
 	public int getManaCost() {
 		
-		return (Spell.getValue(Material.ARROW.getId()) * 16 + argv.get(0) );
+		return (Spell.getValue(Material.ARROW) * 16 + argv.get(0) );
 	}
 	public void runFunction() {
 	

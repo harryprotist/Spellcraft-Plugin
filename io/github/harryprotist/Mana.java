@@ -197,7 +197,7 @@ public final class Mana implements Listener {
 		if (isRune(b) ) {
 
 			Spell sp = new Spell(Rune.parseRune(p, b), Plugin);
-			Integer m = Spell.getValue(b.getType().getId()) * 10;	
+			Integer m = Spell.getValue(b.getType()) * 10;	
 
 			p.sendMessage("Performing ritual");		
 

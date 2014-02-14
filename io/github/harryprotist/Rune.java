@@ -48,7 +48,7 @@ public class Rune {
 			Block b = w.getBlockAt(loc);
 			if (b.getType() == Material.AIR) break READ;
 			else {
-				spell.add(b.getType().getId() );
+				spell.add(Spell.getFunction(b.getType()));
 				usedOrb.add("0");
 			}
 
@@ -59,7 +59,7 @@ public class Rune {
 
 			loc.add(0.0, 1.0, 0.0);
 			while (w.getBlockAt(loc).getType() != Material.AIR) {
-				argv.add(new Integer(w.getBlockAt(loc).getType().getId()) );
+				argv.add(new Integer(Spell.getValue(w.getBlockAt(loc).getType()) ));
 				loc.add(0.0, 1.0, 0.0);
 				argc++;
 				

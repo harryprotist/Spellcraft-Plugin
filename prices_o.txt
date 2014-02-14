@@ -1,0 +1,225 @@
+48 	MOSSY_COBBLESTONE 	10
+86 	PUMPKIN  	10
+87 	NETHERRACK  	10
+6:1 	Sapling (Spruce)  	10
+6 	Sapling (Oak)  	10
+18 	Leaves (Oak)  	10
+4 	Cobblestone  	10
+13 	Gravel  	10
+18:7 	Leaves (Jungle)  	10
+103 	Melon  	10
+3:1 	Grassless Dirt  	10
+112 	Nether Brick  	20
+
+1 	Stone  	20
+67 	Cobblestone Stairs  	20
+40 	Red Mushroom  	20
+
+88 	Soul Sand  	20
+6:2 	Sapling (Birch)  	20
+81 	Cactus  	20
+18:6 	Leaves (Birch)  	20
+3 	Dirt  	20
+139 	Cobblestone Wall  	20
+139:1 	Mossy Cobblestone Wall  	20
+405 	Nether Small Brick  	20
+111 	Lily Pad  	30
+98 	Stone Bricks  	30
+113 	Nether Brick Fence  	30
+102 	Glass Pane  	30
+121 	Ender stone  	30
+37 	Dandelion (yellow flower)  	30
+38 	Rose (red flower)  	30
+77 	Stone Button  	30
+2 	Grass Block  	30
+16 	Coal Ore  	30
+12 	Sand  	40
+31:1 	Tall Grass  	40
+114 	Nether Brick Stairs  	50
+109 	Stone Brick Stairs  	50
+106 	Vines  	50
+20 	Glass  	50
+
+39 	Brown Mushroom  	50
+70 	Stone Pressure Plate  	50
+
+
+
+69 	Lever  	70
+21 	Lapis Lazuli Ore  	70
+61 	Furnace  	80
+50 	Torch  	80
+5 	Wooden Plank (Oak)  	90
+80 	Snow Block  	90
+5:3 	Wooden Plank (Jungle)  	90
+5:2 	Wooden Plank (Birch)  	90
+5:1 	Wooden Plank (Spruce)  	90
+22 	Lapis Lazuli Block  	100
+91 	Jack-O-Lantern  	100
+
+65 	Ladder  	130
+53 	Wooden Stairs (Oak)  	140
+134 	Wooden Stairs (Spruce)  	140
+135 	Wooden Stairs (Birch)  	140
+136 	Wooden Stairs (Jungle)  	140
+175:1 	Lilac  	140
+76 	Redstone Torch  	150
+85 	Fence  	170
+158 	Dropper  	170
+38:8 	Oxeye Daisy  	170
+72 	Wooden Pressure Plate  	180
+24 	Sandstone  	190
+173 	Block of Coal  	190
+337 	Clay  	200
+24:2 	Smooth Sandstone  	200
+128 	Sandstone Stairs  	200
+336 	Clay Brick  	210
+38:5 	Orange Tulip  	210
+24:1 	Chiseled Sandstone  	220
+6:3 	Sapling (Jungle Tree)  	230
+175 	Sunflower  	240
+96 	Trapdoor  	270
+38:2 	Allium  	290
+12:1 	Red Sand  	290
+17 	Wood (Oak)  	300
+38:4 	Red Tulip  	300
+175:3 	Large Fern  	300
+38:6 	White Tulip  	300
+17:1 	Wood (Spruce)  	310
+17:2 	Wood (Birch)  	310
+17:3 	Wood (Jungle)  	310
+338 	Sugar Cane  	330
+58 	Workbench  	350
+18:5 	Leaves (Spruce)  	360
+38:1 	Blue Orchid  	370
+107 	Fence Gate  	390
+171 	White carpet  	400
+171:11 	Blue Carpet  	410
+171:12 	Brown Carpet  	420
+171:3 	Light Blue Carpet  	420
+171:4 	Yellow Carpet  	420
+171:6 	Pink Carpet  	420
+171:10 	Purple Carpet  	420
+171:14 	Red Carpet  	420
+171:1 	Orange Carpet  	430
+171:2 	Magenta Carpet  	430
+171:5 	Lime Carpet  	430
+171:7 	Grey Carpet  	430
+171:8 	Light Grey Carpet  	430
+171:9 	Cyan Carpet  	430
+171:13 	Green Carpet  	430
+
+171:15 	Black Carpet  	440
+356 	Redstone Repeater  	470
+3:2 	Podzol  	480
+101 	Iron Bars  	490
+66 	Rails  	490
+38:7 	Pink Tulip  	500
+324 	Wooden door  	520
+35 	Wool  	580
+35:11 	Blue Wool  	600
+175:5 	Peony  	600
+35:12 	Brown Wool  	610
+35:3 	Light Blue Wool  	610
+35:9 	Cyan Wool  	620
+35:10 	Purple Wool  	620
+35:4 	Yellow Wool  	620
+35:6 	Pink Wool  	620
+35:13 	Green Wool  	620
+35:14 	Red Wool  	620
+35:1 	Orange Wool  	630
+35:2 	Magenta Wool  	630
+35:5 	Lime Wool  	630
+35:8 	Light Gray Wool  	630
+35:7 	Gray Wool  	640
+35:15 	Black Wool  	640
+73 	Redstone ore  	640
+390 	Flower Pot  	650
+54 	Chest  	690
+110 	Mycelium  	700
+98:1 	Mossy Stone Bricks  	780
+25 	Note Block  	790
+46 	TNT  	820
+82 	Clay Block  	820
+172 	Hardened Clay  	830
+152 	Redstone block  	830
+159 	White Stained Clay  	840
+159:1 	Orange Stained Clay  	840
+159:3 	Light Blue Stained Clay  	840
+159:4 	Yellow Stained Clay  	840
+159:5 	Lime Stained Clay  	840
+159:9 	Cyan Stained Clay  	840
+159:11 	Blue Stained Clay  	840
+159:12 	Brown Stained Clay  	840
+159:13 	Green Stained Clay  	840
+159:14 	Red Stained Clay  	840
+159:2 	Magenta Stained Clay  	850
+159:7 	Grey Stained Clay  	850
+159:8 	Light Grey Stained Clay  	850
+159:15 	Black Stained Clay  	850
+23 	Dispenser  	860
+45 	Brick  	860
+31:2 	Tall Grass (Fern)  	880
+174 	Packed Ice  	900
+397:1 	Wither Head  	920
+397 	Skeleton Head  	970
+175:4 	Rose Bush  	970
+19 	Sponge  	1000
+78 	Snow  	1000
+15 	Iron Ore  	1260
+148 	Weighted Pressure Plate (Heavy)  	1280
+28 	Detector Rail  	1300
+108 	Brick Stairs  	1300
+153 	Nether Quartz Ore  	1310
+79 	Ice  	1320
+157 	Activator Rail  	1320
+131 	Tripwire Hook  	1420
+397:4 	Creeper Head  	1450
+33 	Piston  	1670
+397:3 	Head  	1780
+29 	Sticky Piston  	1810
+404 	Redstone comparator  	1850
+397:2 	Zombie Head  	1900
+170 	Hay Block  	1930
+355 	Bed  	2010
+30 	Cobweb  	2580
+
+354 	Cake  	3650
+98:3 	Chiseled Stone Brick  	3650
+147 	Weighted Pressure Plate (Light)  	4160
+151 	DayLight Sensor  	4290
+89 	Glowstone  	4600
+123 	Redstone Lamp  	4970
+129 	Emerald Ore  	5010
+155 	Block of Quartz  	5290
+155:2 	Pillar Quartz Block  	5300
+155:1 	Chiseled Quartz Block  	5320
+47 	Bookshelf  	6010
+100:1 	Huge Red Mushroom  	6200
+159:6 	Pink Stained Clay  	6680
+159:10 	Purple Stained Clay  	6680
+154 	Hopper  	7060
+379 	Brewing Stand  	7230
+330 	Iron Door  	7630
+156 	Quartz Stairs  	7950
+380 	Cauldron  	8900
+7 	Bedrock  	10000
+42 	Iron Block  	11440
+145:2 	Very damaged Anvil  	13150
+145:1 	Sighlty damaged Anvil  	19720
+99:1 	Huge Brown Mushroom  	25010
+27 	Powered Rail  	25060
+49 	Obsidian  	30650
+41 	Gold Block  	37370
+145 	Anvil  	39420
+133 	Block of Emerald  	45010
+31 	Dead Shrub (Tall Grass)  	46860
+56 	Diamond Ore  	69570
+84 	Jukebox  	70270
+115 	Nether Wart  	100000
+144 	Head Block (Skeleton)  	100000
+144:1 	Head Block (Wither)  	100000
+138 	Beacon  	185220
+130 	Ender Chest  	249400
+116 	Enchantment Table  	263580
+57 	Diamond Block	626220

@@ -25,7 +25,7 @@ public class PlaceBlock extends BlockFunction
 	}
 	public int getManaCost() {
 
-		return (int)Math.pow( Spell.getValue(argv.get(0)), 2);	
+		return (int)Math.pow(argv.get(0), 2);	
 	}
 	public void runFunction() {
 		
@@ -33,7 +33,7 @@ public class PlaceBlock extends BlockFunction
 
 		if (w.getBlockAt(loc).getType() == Material.AIR) {
 		
-			w.getBlockAt(loc).setTypeId(argv.get(0).intValue() );
+			w.getBlockAt(loc).setType(Spell.getValueMaterial(argv.get(0)));
 		}
 	}
 }

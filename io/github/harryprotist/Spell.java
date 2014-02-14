@@ -36,8 +36,8 @@ public class Spell {
 
 	private Spellcraft Plugin;
 
-	private static Map<Integer, Integer> Functions = new HashMap<Integer, Integer>();
-	private static Map<Integer, Integer> Values = new HashMap<Integer, Integer>();
+	private static Map<Material, Integer> Functions = new HashMap<Material, Integer>();
+	private static Map<Material, Integer> Values = new HashMap<Material, Integer>();
 	public static boolean Load() {
 		
 		BufferedReader file;
@@ -51,14 +51,14 @@ public class Spell {
 			String[] data = line.split(" ");
 			if (data.length != 3) return false;
 
-			Integer key;
+			Material key;
 			Integer fun;
 			Integer val;
 
 			try {
-				key = new Integer(data[0]);
-				fun = new Integer(data[1]);
-				val = new Integer(data[2]);	
+				key = Material.getMaterial(data[0]);
+				val = new Integer(data[1]);	
+				fun = new Integer(data[2]);
 
 			} catch (NumberFormatException e) {
 				return false;
@@ -75,24 +75,33 @@ public class Spell {
 
 		return true;
 	}
-	public static Integer getFunction(Integer key) {
-		return Functions.get(key);
+	public static Integer getFunction(Material key) {
+		return (Functions.get(key) == null)? (0):(Functions.get(key));
 	}
-	public static Integer getValue(Integer key) {
+	public static Integer getValue(Material key) {
 		return ((Values.get(key) == null)? (10):(Values.get(key)));
+	}
+	public static Material getValueMaterial(Integer value) {
+		for (Object m : Values.keySet().toArray() ) {
+			Material M = (Material)m;
+			if (getValue(M) == value) {
+				return M;
+			}
+		}
+		return Material.AIR;
 	}
 
 	public static String dumpMaps() {
 		String ret = "Functions:\n";
 
 		for (Object s : Functions.keySet().toArray() ) {
-			Integer S = (Integer)s;
+			Material S = (Material)s;
 			ret += S.toString() + "\t" + getFunction(S).toString() + "\n";
 		}
 		
 		ret += "\nValues:\n";
 		for (Object s : Values.keySet().toArray() ) {
-			Integer S = (Integer)s;
+			Material S = (Material)s;
 			ret += S.toString() + "\t" + getValue(S).toString() + "\n";
 		}	
 
@@ -186,19 +195,16 @@ public class Spell {
 				continue SPELL;
 			}
 
-			if (getFunction(cmd) == null) break;
-			if (getValue(cmd) == null) break;
-
 			BlockFunction function = null;
 
 			SWITCH:
-			switch (getFunction(cmd).intValue()) {
+			switch (cmd) {
 				case 1: function = new SetTargetLooking(argv, caster, loc);
 				// Sets target to where you're looking
 				break;
 				case 2: 
 					ArrayList<Integer> tmpArgv = new ArrayList<Integer>();
-					tmpArgv.add(new Integer(51));
+					tmpArgv.add(new Integer(getValue(Material.FIRE)));
 					function = new PlaceBlock(tmpArgv, caster, loc);
 				// Sets current block on fire, if it's air
 				break;	

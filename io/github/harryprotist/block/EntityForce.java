@@ -39,7 +39,7 @@ public class EntityForce extends EntityFunction
 		double away, up, right;
 		double x, y, z;
 
-		int func = sp.getFunction(argv.get(0));
+		int func = sp.getFunction(sp.getValueMaterial(argv.get(0)));
 		//caster.sendMessage("function #: " + func);
 
 		if (func == 3) {
