@@ -27,6 +27,7 @@ import io.github.harryprotist.block.ShiftLoc;
 import io.github.harryprotist.block.ShootArrow;
 import io.github.harryprotist.block.EntitySelectArea;
 import io.github.harryprotist.block.EntityForce;
+import io.github.harryprotist.block.Dummy;
 
 import java.util.*;
 import java.io.*;
@@ -84,7 +85,7 @@ public class Spell {
 	public static Material getValueMaterial(Integer value) {
 		for (Object m : Values.keySet().toArray() ) {
 			Material M = (Material)m;
-			if (getValue(M) == value) {
+			if (getValue(M).equals(value)) {
 				return M;
 			}
 		}
@@ -179,13 +180,14 @@ public class Spell {
 
 					if (mem.containsKey(Script.get(i + j) ) ) {
 						argv.add(mem.get(Script.get(i + j) ) );
+						caster.sendMessage("Replacing " + Script.get(i + j) + " with " + mem.get(Script.get(i + j)));
 					} else {
 						argv.add(Script.get(i + j));
 					}
 				}
 			}
 
-			//caster.sendMessage(cmd + ", with " + argc + " args");
+			caster.sendMessage(cmd + ", with " + argc + " args");
 			//caster.sendMessage(getFunction(cmd).toString() + " is the corresponding function");
 
 			if (cmd < 0) {
@@ -249,9 +251,8 @@ public class Spell {
 				break;
 				case 16: 
 					if (argc != 1) break SPELL;
-					if (argv.get(0).intValue() == 0) break SPELL;
-					manaUsed += 1;
-					if (manaSource < manaUsed) return 0;
+					if (argv.get(0).intValue() <= 0) break SPELL;
+					function = new Dummy();
 				// stops the rune if arg is 0
 				break;
 				case 17: function = new GiveMana(argv, caster, loc, Plugin);

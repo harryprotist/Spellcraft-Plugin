@@ -34,6 +34,6 @@ public class MemAdd extends MemBlockFunction
 		
 		int factor = subtract? -1:1;
 
-		mem.put( rargv.get(0), factor * argv.get(0) + argv.get(1) );
+		mem.put( rargv.get(0), factor * argv.get(1) + argv.get(0) );
 	}
 }
