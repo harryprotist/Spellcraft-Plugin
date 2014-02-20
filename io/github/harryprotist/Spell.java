@@ -27,6 +27,7 @@ import io.github.harryprotist.block.ShiftLoc;
 import io.github.harryprotist.block.ShootArrow;
 import io.github.harryprotist.block.EntitySelectArea;
 import io.github.harryprotist.block.EntityForce;
+import io.github.harryprotist.block.EntityPotion;
 import io.github.harryprotist.block.Dummy;
 
 import java.util.*;
@@ -261,11 +262,14 @@ public class Spell {
 				case 18: function = new ShootArrow(argv, caster, loc);
 				// shoot an arrow towards loc with power argv[0]	
 				break;
-				case 19: function = new EntityForce(argv, caster, loc, this, entList);
+				case 19: function = new EntityForce(argv, caster, loc, entList);
 				// apply a force to entities selected
 				break;
 				case 20: function = new EntitySelectArea(argv, caster, loc, entList);
 				// select entities in an area
+				break;
+				case 21: function = new EntityPotion(argv, caster, loc, entList);
+				// apply potion effect to selected entities
 				break;
 				default:
 					break SPELL;

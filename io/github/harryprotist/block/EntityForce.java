@@ -19,7 +19,7 @@ public class EntityForce extends EntityFunction
 	
 	private Spell sp;
 
-	public EntityForce(ArrayList<Integer> a, Player c, Location l, Spell sp, ArrayList<Entity> eL) {
+	public EntityForce(ArrayList<Integer> a, Player c, Location l, ArrayList<Entity> eL) {
 		super(a, c, l, eL);	
 		this.sp = sp;
 	}
@@ -39,7 +39,7 @@ public class EntityForce extends EntityFunction
 		double away, up, right;
 		double x, y, z;
 
-		int func = sp.getFunction(sp.getValueMaterial(argv.get(0)));
+		int func = Spell.getFunction(Spell.getValueMaterial(argv.get(0)));
 		//caster.sendMessage("function #: " + func);
 
 		if (func == 3) {
