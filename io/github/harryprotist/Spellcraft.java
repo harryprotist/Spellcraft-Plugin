@@ -52,10 +52,12 @@ public final class Spellcraft extends JavaPlugin implements Listener {
 	
 	@EventHandler
 	public void onPlayerLogin(PlayerLoginEvent event) {
+		getLogger().info("Loading mana for player");
 		loadPlayerData(event.getPlayer());
 	}
 	@EventHandler
-	public void onPlayerQuit(PlayerLoginEvent event) {
+	public void onPlayerQuit(PlayerQuitEvent event) {
+		getLogger().info("Saving mana for player");
 		savePlayerData(event.getPlayer());
 	}
 	@EventHandler
