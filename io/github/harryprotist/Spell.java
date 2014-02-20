@@ -180,14 +180,14 @@ public class Spell {
 
 					if (mem.containsKey(Script.get(i + j) ) ) {
 						argv.add(mem.get(Script.get(i + j) ) );
-						caster.sendMessage("Replacing " + Script.get(i + j) + " with " + mem.get(Script.get(i + j)));
+						//caster.sendMessage("Replacing " + Script.get(i + j) + " with " + mem.get(Script.get(i + j)));
 					} else {
 						argv.add(Script.get(i + j));
 					}
 				}
 			}
 
-			caster.sendMessage(cmd + ", with " + argc + " args");
+			//caster.sendMessage(cmd + ", with " + argc + " args");
 			//caster.sendMessage(getFunction(cmd).toString() + " is the corresponding function");
 
 			if (cmd < 0) {
