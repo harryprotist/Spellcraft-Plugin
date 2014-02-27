@@ -63,7 +63,7 @@ public class EntityPotion extends EntityFunction
 
 		if (!(argv.size() < 1)) {
 			pm = Spell.getValueMaterial(argv.get(0));
-			if (pm == null) return false;
+			if (pm == null || btp.get(pm) == null) return false;
 
 			PotionEffectType pe = (PotionEffectType)(btp.get(pm)[0]);
 			instant = pe.isInstant();
