@@ -177,15 +177,25 @@ public final class Mana implements Listener {
 
 			ItemMeta im = is.getItemMeta();
 
+			if (im.hasLore()) {
+				List<String> lore = im.getLore();
+				// check if the spell is the same and then if it is, stack the mana	
+				if (lore.size() == 3 && lore.get(0).equals("SPELLCRAFT")) {
+					if (lore.get(2).equals(sp.dumpScript())) {
+						p.sendMessage("added " + m + " mana to your item");
+						m = (new Integer((new Integer(lore.get(1))).intValue() + n.intValue())).toString();
+					}
+				}
+			}
+
 			ArrayList<String> newLore = new ArrayList<String>();
-			newLore.add("SPELLCRAFT"); // so I can tell it's from my plugin
+			newLore.add("SPELLCRAFT"); // so I can tell it's from my plugin // never mind that for now
 			newLore.add(m);
 			newLore.add(sps);
 
 			im.setLore(newLore);
 			is.setItemMeta(im);
-			
-			p.sendMessage("Your item has been imbued with magic");
+			p.sendMessage("your item has been imbued with magic");
 		}
 	}
 

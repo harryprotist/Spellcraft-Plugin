@@ -35,7 +35,8 @@ public final class Spellcraft extends JavaPlugin implements Listener {
 		ManaEvents = new Mana(this);
 
 		if (Spell.Load()) {
-			getLogger().info(Spell.dumpMaps());
+			//getLogger().info(Spell.dumpMaps());
+			getLogger().info("Loaded Spell info");
 		} else {
 			getLogger().info("Failed to Load Spell");	
 		}
