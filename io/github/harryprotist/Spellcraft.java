@@ -310,9 +310,9 @@ public final class Spellcraft extends JavaPlugin implements Listener {
 					return false;
 				}
 				
-				getLogger().info( line);
-				getLogger().info( dat[1]);
-				getLogger().info( dat[2]);
+				//getLogger().info( line);
+				//getLogger().info( dat[1]);
+				//getLogger().info( dat[2]);
 				
 				setMeta(p, "mana", new Integer(dat[1]));
 				setMeta(p, "lastspell", Spell.parseString(dat[2]));
@@ -334,7 +334,7 @@ public final class Spellcraft extends JavaPlugin implements Listener {
 			
 			String s = Spells.dump();
 		
-			getLogger().info(s);
+		//	getLogger().info(s);
 			f.write(s);
 			f.close();
 		}
