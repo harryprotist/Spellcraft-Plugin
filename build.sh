@@ -3,7 +3,7 @@
 cd /home/$USER/Documents/Programming/Java/My\ Plugins/Spellcraft
 
 echo Compiling classes...
-javac -cp craftbukkit-1.6.4-R2.0.jar \
+javac -cp craftbukkit-1.7.7-R0.2.jar \
 	io/github/harryprotist/*.java \
 	io/github/harryprotist/block/*.java \
 || exit
