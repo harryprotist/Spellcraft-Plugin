@@ -9,6 +9,7 @@ commands:
   aliases: m
  setmana:
   description: set mana
+  default: op
  mload:
   description: load mana of current player
  msave:
