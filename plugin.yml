@@ -20,7 +20,7 @@ permissions:
   spellcraft.mload: true
   spellcraft.setmana: true
   spellcraft.mana: true
-  spellcraft.default: op
+  default: op
  spellcraft.setmana:
   default: op
  spellcraft.mana:
