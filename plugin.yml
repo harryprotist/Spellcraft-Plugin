@@ -9,8 +9,23 @@ commands:
   aliases: m
  setmana:
   description: set mana
-  default: op
  mload:
   description: load mana of current player
  msave:
   description: set mana of current player
+
+permissions:
+ spellcraft.*:
+  spellcraft.msave: true
+  spellcraft.mload: true
+  spellcraft.setmana: true
+  spellcraft.mana: true
+  spellcraft.default: op
+ spellcraft.setmana:
+  default: op
+ spellcraft.mana:
+  default: true
+ spellcraft.msave:
+  default: op
+ spellcraft.mload:
+  default: op

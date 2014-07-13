@@ -82,7 +82,7 @@ public final class Spellcraft extends JavaPlugin implements Listener {
 	public boolean onCommand (CommandSender sender, Command cmd, String label, String[] args) {
 		String cmdName = cmd.getName();
 		
-		if (cmdName.equalsIgnoreCase("spellCraftRunning") ) {
+		if (cmdName.equalsIgnoreCase("spellCraftRunning") && sender.hasPermission("spellcraft.spellcraftrunning")) {
 			sender.sendMessage("Running");
 
 			String map;
@@ -94,7 +94,7 @@ public final class Spellcraft extends JavaPlugin implements Listener {
 	
 			return true;
 
-		} else if (cmdName.equalsIgnoreCase("mana") && sender instanceof Player) {
+		} else if (cmdName.equalsIgnoreCase("mana") && sender instanceof Player && sender.hasPermission("spellcraft.mana")) {
 
 			// the player wants to do something mana related
 			Player p = (Player) sender;	
@@ -149,7 +149,7 @@ public final class Spellcraft extends JavaPlugin implements Listener {
 			}
 			
 			return true;
-		} else if (cmdName.equalsIgnoreCase("setmana") && sender instanceof Player) {
+		} else if (cmdName.equalsIgnoreCase("setmana") && sender instanceof Player && sender.hasPermission("spellcraft.setmana")) {
 			
 			Integer m = new Integer(0);
 			if (args.length > 0) {
@@ -165,7 +165,7 @@ public final class Spellcraft extends JavaPlugin implements Listener {
 
 		} else if (sender instanceof Player) {
 
-			if (cmdName.equalsIgnoreCase("mload") ) {
+			if (cmdName.equalsIgnoreCase("mload") && sender.hasPermission("spellcraft.mload")) {
 				if (loadPlayerData( (Player)sender) ) {
 					sender.sendMessage("loaded successfully");
 				} else {
@@ -173,7 +173,7 @@ public final class Spellcraft extends JavaPlugin implements Listener {
 				} 
 			}
 			
-			if (cmdName.equalsIgnoreCase("msave") ) {
+			if (cmdName.equalsIgnoreCase("msave") && sender.hasPermission("spellcraft.msave")) {
 				if (savePlayerData() ) {
 					sender.sendMessage("saved successfully");
 				} else {
