@@ -18,9 +18,6 @@ public class PlaceBlock extends BlockFunction
 
 		super(a, c, l);
 	}
-	public PlaceBlock(ArrayList<Integer> a, Player c, Location l, int bonusCost) {
-		super(a, c, l);
-	}
 
 	public boolean isValid() {
 

@@ -209,7 +209,7 @@ public class Spell {
 				case 2: 
 					ArrayList<Integer> tmpArgv = new ArrayList<Integer>();
 					tmpArgv.add(new Integer(getValue(Material.FIRE)));
-					function = new PlaceBlock(tmpArgv, caster, loc, 5);
+					function = new PlaceBlock(tmpArgv, caster, loc);
 					manaUsed += 50; // otherwise fire is waaay too cheap and nobody would need flint and steels					
 				// Sets current block on fire, if it's air
 				break;	
