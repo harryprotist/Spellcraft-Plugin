@@ -240,6 +240,25 @@ public final class Spellcraft extends JavaPlugin implements Listener {
 		Spells.load(s);
 		return true;
 	}
+	private String genPlayerString(Player p) {
+
+		Integer mana = (Integer)getMeta(p, "mana");
+		Spell lastspell = (Spell)getMeta(p, "lastspell");
+		String spellstring = "";
+
+		if (mana == null) { 
+			mana = new Integer(0);
+		}
+		if (lastspell == null) {
+			spellstring = "0";
+		} else {
+			spellstring = lastspell.dumpScript();
+		}
+
+		return 	p.getPlayerListName() + ":"
+			+ mana.toString() + ":"
+			+ spellstring + "\n";
+	}
 	public boolean savePlayerData() {
 
 		FileWriter f;
@@ -251,9 +270,7 @@ public final class Spellcraft extends JavaPlugin implements Listener {
 			for (int j, i = 0; i < pList.length; ++i) {
 				Player p  = pList[i];			
 
-				s += 	p.getPlayerListName() + ":"
-				 	+ ((Integer)getMeta(p, "mana")).toString() + ":"
-					+ ((Spell)getMeta(p, "lastspell")).dumpScript() + "\n";
+				s += genPlayerString(p);
 			}
 
 			f.write( s );
@@ -271,10 +288,7 @@ public final class Spellcraft extends JavaPlugin implements Listener {
 		try {
 			f = new FileWriter("mana.txt", true);
 
-			String s = p.getPlayerListName() + ":"
-		 		+ ((Integer)getMeta(p, "mana")).toString() + ":"
-				+ ((Spell)getMeta(p, "lastspell")).dumpScript() + "\n";
-			getLogger().info(s);
+			String s = genPlayerString(p);
 
 			f.write( s );
 			f.close();
