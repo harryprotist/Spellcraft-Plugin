@@ -94,7 +94,7 @@ public final class Spellcraft extends JavaPlugin implements Listener {
 	
 			return true;
 
-		} else if (cmdName.equalsIgnoreCase("mana") && sender instanceof Player && sender.hasPermission("spellcraft.mana")) {
+		} else if (cmdName.equalsIgnoreCase("mana") && sender instanceof Player ){//&& sender.hasPermission("spellcraft.mana")) {
 
 			// the player wants to do something mana related
 			Player p = (Player) sender;	

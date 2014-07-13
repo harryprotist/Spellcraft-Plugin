@@ -29,7 +29,7 @@ public class BreakBlock extends BlockFunction
 	}
 	public int getManaCost() {
 		
-		if (argv.size() == 1 && target.getType() != Spell.getValueMaterial(argv.get(0))) {
+		if (argv.size() == 1 && !target.getType().equals(Spell.getValueMaterial(argv.get(0))) ) {
 			return 0;
 		} else {
 			return target.getType().getMaxDurability();
@@ -39,9 +39,8 @@ public class BreakBlock extends BlockFunction
 		
 		World w = caster.getWorld();
 	
-		if ( argv.size() == 0 ||
-		( argv.size() > 1 && target.getType() == Spell.getValueMaterial(argv.get(0))) &&
-		( target.getType() != Material.BEDROCK )) {
+		if ( (argv.size() == 0 || ( argv.size() == 1 && target.getType().equals(Spell.getValueMaterial(argv.get(0))) ) ) &&
+		( target.getType() != Material.BEDROCK ) ) {
 
 			target.breakNaturally();
 		}

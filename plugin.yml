@@ -1,6 +1,6 @@
 name: Spellcraft
 main: io.github.harryprotist.Spellcraft
-version: 0.01
+version: 0.5
 commands:
  spellCraftRunning:
   description: is Spellcraft running?
