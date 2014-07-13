@@ -25,7 +25,7 @@ public class PlaceBlock extends BlockFunction
 	}
 	public int getManaCost() {
 
-		return (int)Math.pow(argv.get(0), 3);	
+		return (int)Math.pow(argv.get(0) + 3, 3);	
 	}
 	public void runFunction() {
 		

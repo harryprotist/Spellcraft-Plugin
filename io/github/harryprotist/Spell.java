@@ -28,6 +28,7 @@ import io.github.harryprotist.block.ShootArrow;
 import io.github.harryprotist.block.EntitySelectArea;
 import io.github.harryprotist.block.EntityForce;
 import io.github.harryprotist.block.EntityPotion;
+import io.github.harryprotist.block.EntityTeleport;
 import io.github.harryprotist.block.Dummy;
 
 import java.util.*;
@@ -271,13 +272,16 @@ public class Spell {
 				case 21: function = new EntityPotion(argv, caster, loc, entList);
 				// apply potion effect to selected entities
 				break;
+				case 22: function = new EntityTeleport(argv, caster, loc, entList);
+				// teleport entities to loc
+				break;
 				default:
 					break SPELL;
 			}
 
 			if (function == null || !function.isValid() ) {
 				break SPELL;
-			}
+			} 
 
 			manaUsed += function.getManaCost() + 1;
 			if (manaSource < manaUsed) return 0; 
