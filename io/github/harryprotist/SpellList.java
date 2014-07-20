@@ -42,6 +42,7 @@ public final class SpellList {
 		return true;
 	}
 
+
 	public Spell get(String word) {
 		
 		return Spells.get(word);
