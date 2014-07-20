@@ -12,6 +12,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.World;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
@@ -51,7 +52,6 @@ public final class Mana implements Listener {
 				if (spell == null) { 
 			
 					p.sendMessage("No Last Spell");
-					return;
 				
 				} else {
 	
@@ -68,33 +68,32 @@ public final class Mana implements Listener {
 	
 				ItemStack is = p.getInventory().getItemInHand();
 			
-				if (!is.hasItemMeta()) {
-					return;
-				}
-	
-				ItemMeta im = is.getItemMeta();
-				List<String> lore = im.getLore();
-	
-				if (lore != null && lore.size() == 3 && lore.get(0).equals("SPELLCRAFT") ) {
-	
-					Integer m = new Integer(lore.get(1));
-					Spell sp = new Spell(Spell.parseString(lore.get(2)), Plugin);
-	
-					m = new Integer(sp.Excecute(m.intValue(), p) );
-	
-					ArrayList<String> newLore = new ArrayList<String>();
-					newLore.add("SPELLCRAFT");
-					newLore.add(m.toString());
-					newLore.add(sp.dumpScript());
-	
-					if (m.intValue() > 0) {
-						im.setLore(newLore);
-					} else {
-						im.setLore(null);
+				if (is.hasItemMeta()) {
+		
+					ItemMeta im = is.getItemMeta();
+					List<String> lore = im.getLore();
+		
+					if (lore != null && lore.size() == 3 && lore.get(0).equals("SPELLCRAFT") ) {
+		
+						Integer m = new Integer(lore.get(1));
+						Spell sp = new Spell(Spell.parseString(lore.get(2)), Plugin);
+		
+						m = new Integer(sp.Excecute(m.intValue(), p) );
+		
+						ArrayList<String> newLore = new ArrayList<String>();
+						newLore.add("SPELLCRAFT");
+						newLore.add(m.toString());
+						newLore.add(sp.dumpScript());
+		
+						if (m.intValue() > 0) {
+							im.setLore(newLore);
+						} else {
+							im.setLore(null);
+						}
+						is.setItemMeta(im);
 					}
-					is.setItemMeta(im);
+		
 				}
-	
 			}
 
 		} else if (a == Action.RIGHT_CLICK_BLOCK) {
@@ -109,7 +108,6 @@ public final class Mana implements Listener {
 				p.sendMessage("activating rune");
 				Plugin.getLogger().info("It's time to kick ass and activate runes.And I'm all outta kick ass");
 			
-				// let's get this sh*t going
 				Spell sp = Rune.parseRune(p, b);
 				Plugin.setMeta(p, "lastspell", sp);
 			}
@@ -123,6 +121,18 @@ public final class Mana implements Listener {
 			p.setHealth(0.0);
 		}
 	}
+	@EventHandler
+	public void onPlayerDeathEvent(PlayerDeathEvent event) {
+		
+		Player p = event.getEntity();		
+		Integer m = (Integer)Plugin.getMeta(p, "mana");
+		if (m == null) {
+			m = new Integer(1);
+		} else if (m == 0) {
+			p.setHealth(0.0);
+		}
+	}
+	
 
 	private boolean isRune(Block b) {
 		World w = b.getWorld();
