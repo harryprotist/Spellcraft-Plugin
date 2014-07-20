@@ -56,7 +56,7 @@ public final class Mana implements Listener {
 				} else {
 	
 					Integer m = (Integer)Plugin.getMeta(p, "mana");
-					if (m == null) m = new Integer(0);
+					if (m == null) m = new Integer(1);
 	
 					//p.sendMessage("Casting last spell. Current MP: " + m.toString());			
 					
@@ -114,6 +114,14 @@ public final class Mana implements Listener {
 				Plugin.setMeta(p, "lastspell", sp);
 			}
 		}
+
+		// check whether player has died of mana loss
+		Integer m = (Integer)Plugin.getMeta(p, "mana");
+		if (m == null) {
+			m = new Integer(1);
+		} else if (m == 0) {
+			p.setHealth(0.0);
+		}
 	}
 
 	private boolean isRune(Block b) {
@@ -166,7 +174,7 @@ public final class Mana implements Listener {
 			Integer pn = (Integer)Plugin.getMeta(p, "mana");
 			if (pn == null) pn = new Integer(0);
 
-			if (pn.compareTo(n) < 0 || n.intValue() <= 0) {
+			if (pn.compareTo(n) <= 0 || n.intValue() <= 0) {
 				return;	
 			} else {
 				Plugin.setMeta(p, "mana", new Integer(pn - n));
