@@ -63,6 +63,14 @@ public final class Mana implements Listener {
 					int nm = spell.Excecute(m.intValue(), p);
 					Plugin.setMeta(p, "mana", new Integer(nm));
 				}
+
+				// check whether player has died of mana loss
+				Integer m = (Integer)Plugin.getMeta(p, "mana");
+				if (m == null) {
+					m = new Integer(1);
+				} else if (m == 0) {
+					p.setHealth(0.0);
+				}
 		
 			} else {
 	
@@ -96,6 +104,7 @@ public final class Mana implements Listener {
 				}
 			}
 
+
 		} else if (a == Action.RIGHT_CLICK_BLOCK) {
 		// check to see if a rune is being activated
 
@@ -113,13 +122,6 @@ public final class Mana implements Listener {
 			}
 		}
 
-		// check whether player has died of mana loss
-		Integer m = (Integer)Plugin.getMeta(p, "mana");
-		if (m == null) {
-			m = new Integer(1);
-		} else if (m == 0) {
-			p.setHealth(0.0);
-		}
 	}
 	@EventHandler
 	public void onPlayerDeathEvent(PlayerDeathEvent event) {
@@ -129,7 +131,7 @@ public final class Mana implements Listener {
 		if (m == null) {
 			m = new Integer(1);
 		} else if (m == 0) {
-			p.setHealth(0.0);
+			Plugin.setMeta(p, "mana", new Integer(1));
 		}
 	}
 	
