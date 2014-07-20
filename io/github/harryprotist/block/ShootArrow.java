@@ -34,7 +34,6 @@ public class ShootArrow extends BlockFunction
 		if (argv.size() > 1) spread = argv.get(1);
 
 		Location pLoc = caster.getLocation();
-		pLoc.add(0.0,1.5,0.0);
 		pLoc.add(caster.getLocation().getDirection().normalize());
 
 		Location tLoc = loc.clone();
