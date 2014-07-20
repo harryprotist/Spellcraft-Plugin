@@ -247,7 +247,7 @@ public final class Spellcraft extends JavaPlugin implements Listener {
 		String spellstring = "";
 
 		if (mana == null) { 
-			mana = new Integer(0);
+			mana = new Integer(1);
 		}
 		if (lastspell == null) {
 			spellstring = "0";
@@ -338,6 +338,14 @@ public final class Spellcraft extends JavaPlugin implements Listener {
 			getLogger().info(e.toString());
 			return false;
 		}
+
+		// create data if there is none
+		if (!found) {
+
+				setMeta(p, "mana", new Integer(1));
+				setMeta(p, "lastspell", Spell.parseString("0"));
+		}
+
 		return found; // no data yet
 	}
 	public boolean saveIncantations() {
