@@ -300,11 +300,18 @@ public final class Spellcraft extends JavaPlugin implements Listener {
 		return true;
 
 	}
+	public void createPlayerData(Player p) {
+		setMeta(p, "mana", new Integer(1);
+		setMeta(p, "lastspell", Spell.parseString("0"));
+	}
 	public boolean loadPlayerData(Player p) {
 
 		BufferedReader file; 
 		try { file = new BufferedReader(new FileReader("mana.txt")); }
 		catch (FileNotFoundException e) { 
+		
+			createPlayerData(p);
+
 			getLogger().info(e.toString());
 			return false;
 		}
@@ -341,9 +348,7 @@ public final class Spellcraft extends JavaPlugin implements Listener {
 
 		// create data if there is none
 		if (!found) {
-
-				setMeta(p, "mana", new Integer(1));
-				setMeta(p, "lastspell", Spell.parseString("0"));
+			createPlayerData(p);
 		}
 
 		return found; // no data yet
