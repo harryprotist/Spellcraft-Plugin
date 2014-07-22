@@ -3,10 +3,10 @@ Spellcraft-Plugin
 
 Contents
 --------
-	1. Installation
-	2. Creating Runes
-	3. Casting Runes
-	4. Reference
+1. Installation
+2. Creating Runes
+3. Casting Runes
+4. Reference
 
 1 Installation
 ============
