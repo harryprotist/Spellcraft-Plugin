@@ -162,4 +162,198 @@ it needs to be done right next to the rune you want to cast.
 4 Reference
 ==========
 
-To be added, for now just cross reference spell.txt function column (the one that's mostly 0s) with the massive switch statement with comments in io/github/harryprotist/Spell.java 
+GLASS			1
+---------------
+Description: Targets Where the player is looking.
+
+Arguments: Range, determines how far to target.
+
+Cost: Linear with Range.
+
+NETHERRACK		2
+---------------
+Description: Sets the targeted block on fire if it's air.
+Arguments: None.
+Cost: Constant.
+
+STONE			3
+---------------
+Description: Moves the targeted location down by 1.
+
+Arguments: None.
+
+Cost: Constant.
+
+LOG			4
+---------------
+Description: Moves the targeted location up by 1.
+
+Arguments: None.
+
+Cost: Constant.
+
+SAND			5
+---------------
+Description: Moves the targeted location away by one.
+
+Arguments: None.
+
+Cost: Constant.
+
+SANDSTONE		6
+---------------
+Description: Moves the targeted location closer by one.
+
+Arguments: None.
+
+Cost: Constant.
+
+CLAY			7
+---------------
+Description: Moves the targeted location clockwise/right by one.
+
+Arguments: None.
+
+Cost: Constant.
+
+BRICK			8
+---------------
+Description: Moves the targeted location countclockwise/left by one.
+
+Arguments: None.
+
+Cost: Constant.
+
+TNT			9
+---------------
+Description: Creates an explosion at the targeted location.
+
+Arguments: Power, power of the explosion.
+
+Cost: Based on Power squared
+
+FIRE			10
+---------------
+Description: Creates a fiery explosion at the targeted location.
+
+Arguments: Power, power of the explosion.
+
+Cost: Based on Power squared
+
+WORKBENCH		11
+---------------
+Description: Creates a block at the targeted location, if air.
+
+Arguments: Value, the value corresponding to the block that will be placed.
+
+Cost: Based on Value cubed
+
+COBBLESTONE		12
+---------------
+Description: Breaks the block at the targeted location.
+
+Arguments: (optional) Type, the value corresponding to the only type of block that should be broken.
+
+Cost: Linear to the durability of the block broken, or constant if the argument is provided and the block is not the right type.
+
+EMERALD_ORE		13
+---------------
+Description: Sets memory.
+
+Arguments: Type, the type of block that will have its value replaced by Value for use in the rune; Value, the value that will be stored in Type.
+
+Cost: Constant.
+
+GLOWSTONE		14
+---------------
+Description: Adds to memory.
+
+Arguments: Type, the type of block that will have its value added to (must have been previously set by Set Memory).
+
+Cost: Constant.
+
+SOUL_SAND		15
+---------------
+Description: Subtracts from memory.
+
+Arguments: Type, the type of block that will have its value subtracted from (must have been previously set by Set Memory).
+
+Cost: Constant.
+
+REDSTONE_BLOCK		16
+---------------
+Description: Exits if argument is 0.
+
+Arguments: Value, if it has been set to 0 then the rune will exit.
+
+Cost: Constant.
+
+GOLD_BLOCK		17
+---------------
+Description: Gives mana from source to caster.
+
+Arguments: None.
+
+Cost: Constant.
+
+GRAVEL			18
+---------------
+Description: Fires an arrow at the targeted location.
+
+Arguments: Power, determines how powerful the arrow is.
+
+Cost: Linear to Power.
+
+PISTON_BASE		19
+---------------
+Description: Applies force to selected entities.
+
+Arguments: Direction, one of the Shift Direction functions, specifies direction; Force, the amount of force.
+
+Cost: Linear to Force, multiplied by entities.
+
+MOSSY_COBBLESTONE	20
+---------------
+Description: Selects entities at targeted location.
+
+Arguments: Radius, radius to select in.
+
+Cost: Based on Radius cubed.
+
+NETHER_BRICK		21
+---------------
+Description: Apply potion effect to selected entities.
+
+Arguments: Type, a value that corresponds to a potion effect; Duration, the duration.
+  * Glass: Speed. Init, per second: 1000, 10.
+  * Soul Sand: Slow. Init, per second: 2000, 10.
+  * Iron Block: Fast digging. Init, per second: 10000, 10.
+  * Dirt: Slow digging. Init, per second: 2000, 10.
+  * Log: Increase damage. Init, per second: 10000, 25.
+  * Gold Block: Instant healing. Init, per second: 20000, 0.
+  * TNT: Instant harming. Init, per second: 40000, 0.
+  * Leaves: Jump. Init, per second: 1000, 5.
+  * Mossy Cobble: Confusion. Init, per second: 10000, 40.
+  * Glowstone: Regeneration. Init, per second: 50000, 100.
+  * Obsidian: Resistance. Init, per second: 25000, 25.
+  * Netherrack: Fire resistance. Init, per second: 10000, 10.
+  * Ice: Water Breathing. Init, per second: 10000, 10.
+  * Thin Glass: Invisibility. Init, per second: 9000, 5.
+  * Pumpkin: Blindness. Init, per second: 8000, 30.
+  * Jack-o-Lantern: Night Vision. Init, per second: 1000, 5.
+  * Melon: Hunger. Init, per second: 1000, 10.
+  * Clay: Weakness. Init, per second: 3000, 10.
+  * Web: Poison. Init, per second: 12000, 10.
+  * Ender Stone: Wither. Init, per second: 10000, 100.
+
+Cost: Based on an initial cost plus linear to Duration based on a cost/second, multiplied by entities.
+
+ENDER_STONE		22
+---------------
+Description: Teleports entities to targeted location.
+
+Arguments: None.
+
+Cost: Based on distance squared from each entity to location.
+
+
