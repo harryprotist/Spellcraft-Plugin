@@ -29,6 +29,7 @@ import io.github.harryprotist.block.EntitySelectArea;
 import io.github.harryprotist.block.EntityForce;
 import io.github.harryprotist.block.EntityPotion;
 import io.github.harryprotist.block.EntityTeleport;
+import io.github.harryprotist.block.StrikeLightning;
 import io.github.harryprotist.block.Dummy;
 
 import java.util.*;
@@ -275,6 +276,9 @@ public class Spell {
 				break;
 				case 22: function = new EntityTeleport(argv, caster, loc, entList);
 				// teleport entities to loc
+				break;
+				case 23: function = new StrikeLightning(argv, caster, loc);
+				// strikes lightning at loc
 				break;
 				default:
 					break SPELL;
