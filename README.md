@@ -357,3 +357,10 @@ Arguments: None.
 Cost: Based on distance squared from each entity to location.
 
 
+IRON_BLOCK		23
+---------------
+Description: Strikes lightning at targeted location.
+
+Arguments: None.
+
+Cost: Constant.
