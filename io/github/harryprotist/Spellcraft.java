@@ -301,7 +301,7 @@ public final class Spellcraft extends JavaPlugin implements Listener {
 
 	}
 	public void createPlayerData(Player p) {
-		setMeta(p, "mana", new Integer(1);
+		setMeta(p, "mana", new Integer(1));
 		setMeta(p, "lastspell", Spell.parseString("0"));
 	}
 	public boolean loadPlayerData(Player p) {
